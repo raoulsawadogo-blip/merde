@@ -1,0 +1,826 @@
+ #include <stdio.h>
+
+int main(void)
+{
+    int nombre = 0;
+    float prix = 90.99;
+    signed char triple ='A';
+
+    char as[] = "A";
+    printf("La 23 eme lettre de l'alphabet est %s", as);
+    #include <stdio.h>
+
+    signed char signedChar = -10;
+    unsigned char unsignedChar = 200;
+
+    printf("signed char value: %d\n", signedChar);
+    printf("unsigned char value: %u\n", unsignedChar);
+ 
+    printf("%d \n%f \n %c\n", nombre, prix, triple);
+    // Reconversion des variables
+            /*
+            %d: nombre entier (int)
+        %f : nombre flottant (float) et a chaque fois que l'on voudra un certain nombre de chiffre apres la virgule on aura juste a faire %.nombref 
+        de chiffre desire+f . exemple: %.2f pour afficher un nombre avec deux chiffres apres la virgule 
+        %с : caractère (char,signed char) Si on utilise %d avec des chars (caracteres en lettre ), c'est la avleur numerique de ces lettres la qui vont s'afficher comme par exemple
+        la caractere A a pour valeur 65 ben C donc pour afficher uniquement A on est oblige d'utiliser le %c 
+        %s : chaîne de caractères (texte)*/
+
+    float nombre_2=23.98; 
+   int reconversion=(int)nombre_2; 
+   printf("BAh voila le debut du commencemnt qui est de %d\n", reconversion); 
+   /*Les variables constantes : POur qu'une variable ne puisse plus changer de valeur, on peut ajouter const avant meme de determiner le type de 
+   la variable . Dans cet exemple ci dessous, le terminal nous signalera que pi a deja une valeure assignee et que vous pouvez aller vous faire foutre
+   avec votre nouvelle valeur merci pour la comprehension . cela pourrait nous etre utile donc grouille a ne pas le negliger (const). Il est toujours mieux de mettre
+   les variable constantes en majuscule pour les differencier des autres: */ 
+const float PI=3.14;
+printf("PI=%.2f /n",PI);
+/* Register et volatile (A noter que presentement nos executeurs le font automatiquement mais bon il est toujours bon
+ a se diversifier en le faisant souvent manuellement ):
+ Register assignee a une variable signifie qu'on priorise cette variable aux autres car elle sera executee dans les registre du processeur
+qui a une memoire vraiment petite donc ultra rapide. Par conctre VOLATILE c'est le contraire . il signifie que la variable ne devra jamais passer
+ par les registres pour mieux comprendre l'utilite
+regarde la video de ta formation C (De la chaine FormationVIdeo) , la 3 eme video , 32-40 minutes */
+
+    register int valeur_register = 10;
+    volatile int valeur_volatile = 20;
+
+    printf("Valeur de valeur_register : %d\n", valeur_register );
+    printf("Valeur de valeur_volatile : %d\n", valeur_volatile);
+
+    int mavariable=0; 
+    printf("Quelle heure il est ? : ");
+    scanf("%d", &mavariable);
+    /* Le & devant une variable indiaue que l'on utilise l'addresse de la VriBLE ( l'endroit ou la variable est stoquee dans la memoire)
+    NB: Elle n'est utilisable qu'avec les variables float et int pour le reste on a d'autres manieres de faire. */
+    printf(" Il est donc %dh a ce que je vois \n", mavariable);
+    // Les operations
+    /* on a + pour les additions , - pour les soustractions, / pour les divisions, * pour les multiplications et %(modulo) pour determiner les restes des 
+    divisions euclidiennes (vue qu'en division euclidienne il n'y a pas de resultat a virgule donc un exemple 5/2 on a un resultat de 2 et le reste c'est 1 . et c'est le
+    1 que le modulo permet de calculer )*/
+
+    /*On peut faire: */
+    int calcul=5-2;
+    printf("%d \n", calcul);
+    // On peut aussi se passer de variable en faisant:
+    printf("%d \n",5+4);
+    // On peut aussi effectuer des operations entre variables
+   int r1=4;
+   int r2=5;
+   printf("Le resultat de votre calcul est %d ", r1*r2);
+    // On peut aussi faire ( en meme temps petit jeu pour rigoler un peu)
+    int niveau=0;
+    printf("Votre niveau : ");
+    scanf("%d",&niveau);
+    printf(" Votre niveau actuel est %d \n", niveau+1);
+    // A oter que les regles de calcul en c sont les memes qu'en math (priorite aux parentheses, ensuite aux multiplications , aux modulos etc.....)
+
+    /* Une autre facon d'ajouter +1 a une variable (Fonctionne seulement dans les cas ou on voudras ajouter ou soustraire 1 de notre variable ): */
+
+    int vari=23;
+    printf("%d \n", ++vari);// POur ajouter 1 a vari  meme chose pour les soustractions , on ferait --vari
+    
+    
+ 
+ //CHAPITRE : LES CONDITIONS 
+
+/* A retenir meme si tu le sais deja :
+== : symbole d'egalite
+> : superiorite
+< inferiorite
+<= inferiorite ou egalite
+>= superiorite ou egalite
+!= different 
+C'est comme en python sauf la synthaxe qui change */
+
+int tavariable=5;
+if (tavariable>7)
+{
+    printf("Vous avez reussi avec %d \n", tavariable);
+}
+else if ( "tavariable==5) voila enfin");
+
+}
+else
+{
+     printf(" Vous avez depasse la limite qui est de %d \n", tavariable);
+}
+
+// On peut aussi verifier si une condition est vraie ou fausse (nul ou non nul , 1 pour vrai ou non nul et 0 pour faux ou nul)
+
+int a=1;
+if(a) /*On pouvait mettre !a pour verifier l'inverse */
+{
+    printf("Vous avez raison");
+}
+else
+{
+    printf("Faux");
+}
+/* Ici le programme affichera tres bien "Vous avez raison " car a=1 donc elle est vraie. Si a etait egale a 0 le programme allait afficher "Faux".
+Si la variable  `a`  était autre chose que 1 ou 0, le comportement du programme dépendrait de la valeur de  `a`  en tant que condition dans
+ l'instruction  `if` .
+
+- Si  `a`  est différent de zéro, il est considéré comme vrai et l'instruction  `if`  s'exécutera, affichant "Vous avez raison".
+- Si  `a`  est égal à zéro, il est considéré comme faux et l'instruction  `else`  s'exécutera, affichant "Faux".
+
+Donc, si  `a`  avait une valeur autre que 1 ou 0, le programme suivrait les mêmes règles : toute valeur non nulle serait considérée comme vraie
+ et toute valeur nulle serait considérée comme fausse.*/
+
+/* Complements aux conditions :
+&& : Et 
+|| : ou 
+EXEMPLE:
+*/
+int b=5;
+if (b>3 && b<5)
+{
+    printf("Te voila parmis les elites");
+}
+else if (b>4 || b<8)
+{
+    printf("Bof t'es juste comme les autres quoi");
+}
+
+// On peut aussi faire 
+
+int c=12;
+if ((c>13 && c<16) || c==12)/*Donc ici si les deux conditions a savoir ( c>13 et c<16 ) ne sont pas accomplies,
+ le programme verifiera si neamoins c=12 pour enfin executer sinon il affichera la reponse de la condition else. La double parenthese c'est pour justement 
+ donner la priorite a la premiere condition */
+{
+    printf("Vous etes chanceux ");
+}
+else
+{
+    printf("Je ne suis pas interesse par un tel profile ");
+}
+//La conditiion switch . Il faut savoir qu'ellle n'est utilisable qu'avec les nombres et pas avec les chaines de caracterers et autres
+
+int age=12;
+switch(age)
+{
+    case 0:
+        printf("Vous etes meme pas nee frr");
+        break;
+    case 12:
+        printf("Vous etes un leader");
+    default:
+        break;
+}
+
+//Les conditions ternaires ; ce sont des conditions qui tiennent sur une seule ligne ; elle prends seulement deux cas , la condition et son oppose(Si oui,si non)
+
+int prenom=13;
+(prenom==13)? printf("Felicitation , vous n'etes pas rentres dans le piege ") : printf("Vous etes rentre dans le piege");
+// POn peut faire aussi 
+int nb=12;
+int bc=14;
+bc=(nb==12) ?/*si oui*/printf("Salutation"): /*si non*/ printf("Vous etes bizarre comme moi");
+
+
+//Les boucles 
+
+int clavi=12;
+while (clavi<20)
+{
+    printf("Voila");
+    clavi+=1;// ou clavi++
+}
+//Codition 2: Do while 
+int cal=0;
+do
+{
+    printf("JE suis la ");
+    cal++;
+} 
+while (cal<12);
+
+//LA boucle for 
+
+int mariama;
+for (mariama=0 /*POur mariama=0*/;mariama<12/*tant que mariama<12 est vrai execute le programme */;mariama++/* Ajoute 1 a la valeur de mariama a chaque execution*/)
+// On peut faire a la place de mariama++ , mariama+2 ou +3 etc.......
+{
+    printf("Voila \n");
+}
+
+
+Les fonctions : Creer une fonction :
+
+//remarque apres quelques temps de recherche  
+
+explicaton de certaines notions 
+
+Bien sûr! Voici un exemple pour chacun des cas :
+
+1. Exemple d'une fonction avec un type de retour  `int`  et un paramètre :
+#include <stdio.h>
+
+// Déclaration de la fonction qui prend un entier en paramètre et renvoie un entier
+int carre(int x) {
+    return x * x; // La fonction renvoie le carré de l'entier passé en paramètre
+}
+
+int main() {
+    int nombre = 5;
+    int resultat = carre(nombre); // Appel de la fonction carre avec l'entier 5
+    printf("Le carré de %d est : %d\n", nombre, resultat);
+    return 0;
+}
+Dans cet exemple, la fonction  `carre`  prend un entier en paramètre, calcule le carré de cet entier et renvoie le résultat.
+ La fonction est ensuite appelée dans la fonction  `main`  avec l'entier 5, et le résultat est affiché à l'écran.
+
+2. Exemple d'une fonction avec un type de retour  `void`  et un paramètre :
+#include <stdio.h>
+
+// Déclaration de la fonction qui ne renvoie rien et prend un entier en paramètre
+void afficherMessage(int n) {
+    for (int i = 0; i < n; i++) {
+        printf("Bonjour!\n");
+    }
+}
+
+int main() {
+    int repetitions = 3;
+    afficherMessage(repetitions); // Appel de la fonction afficherMessage avec l'entier 3
+    return 0;
+}
+Dans cet exemple, la fonction  `afficherMessage`  ne renvoie rien ( `void` ) mais prend un entier en paramètre.
+ La fonction affiche le message "Bonjour!" un certain nombre de fois déterminé par le paramètre passé. La fonction est ensuite appelée 
+ dans la fonction  `main`  avec l'entier 3 pour afficher le message "Bonjour!" trois fois.
+
+#include <stdio.h>
+
+   int paradisex(int posex)
+{
+    int resultat=23;
+    return resultat;
+}
+int main(void)
+{
+  int vre;
+  vre=paradisex(vre);
+  printf("Les resultats sont %d", vre);
+  return 0;
+}
+
+Ceci est une possibilite mais le probleme est que tu dlois definir la fonction des le debut du code , bien avant le int main (void) 
+
+#include <stdio.h>
+
+   int paradisex()
+{
+    int ser=23;
+    return ser;
+}
+int main(void)
+{
+  int vre=0;
+  vre=paradisex();
+  printf("Les resultats sont %d", vre);
+  return 0;
+}.
+Ceci est une autre possibilite. Dans ce cas la fonction paradisex ne contient rien a la fin(vre=paradisex()) car aucun parametre n'y est assigne
+ des le debut . donc elle est une fonction sans parametre .
+
+ En C, il y a une différence subtile entre déclarer une fonction sans paramètre en utilisant  `()`  et en utilisant  `(void)`  dans le prototype de la fonction.
+
+1.  `fonction_sans_parametre()` : Lorsque vous déclarez une fonction sans paramètre en utilisant  `()` ,
+ cela signifie que la fonction peut prendre un nombre indéterminé de paramètres non nommés. Cela peut conduire à des comportements
+  indéfinis si des arguments sont passés à la fonction lors de son appel.
+
+2.  `fonction_sans_parametre(void)` : En revanche, lors de l'utilisation de  `(void)`
+  dans le prototype de la fonction, cela indique explicitement que la fonction ne prend aucun paramètre. 
+  Cela garantit que la fonction ne peut pas recevoir d'arguments lors de son appel, ce qui est plus sûr et plus clair.
+
+Il est recommandé d'utiliser  `(void)`  pour déclarer une fonction sans paramètre, car cela clarifie explicitement que la fonction ne prend aucun argument. Cela aide à éviter les erreurs potentielles lors de l'appel de la fonction sans paramètre.
+ 
+ Le cas en dessous s'agit de l'application apres le return de la fonction int main(void)  
+*/
+
+/*
+ Fonctions avec prototype:
+
+ #include <stdio.h>
+
+int classex(int trt); Ca c'est le prototype et il est force de mettre le type de notre parametre dans le protype
+int main(void)
+{
+  int dernier=0;
+  dernier=classex(dernier);
+  printf("Le dernier a %d en Pc", dernier);
+
+  return 0;
+}
+int classex(int trt)
+{
+  int premier=34;
+  return premier;
+}
+
+Lorsque vous appelez une fonction sans paramètre, 
+vous devez inclure simplement le nom de la fonction sans les parenthèses vides  () :
+
+  #include <stdio.h>
+
+int bobo(void); 
+(void n'etait pas necessaire ,tu pouvais juste mettre de simples parentheses vides c'est la meme chose )  
+
+int main(void) {
+    int definition = 0;
+    definition = bobo(); // Appel de la fonction sans paramètre
+    printf("%d", definition);
+    return 0;
+}
+
+int bobo(void) {
+    int ret = 112;
+    return ret;
+}
+
+*On peut faire aussi*:
+
+#include <stdio.h>
+
+void bonjour(void); // cela signifie que notre fonction ne retourne rien et elle n'a pas de parametre.
+
+int main(void)// cela signifie que la fonction main retourne un nombre et elle n'a pas de parametre
+{
+  bonjour();
+  return 0;
+}
+ bonjour()
+{
+  printf("Bonjour les gars");
+}
+Mais si  on voulait que notre fonction retourne queque chose , bien sur on ajouterait le type de ce qu'on veut qu'il retourne au debut de la syntaxe de la fonction,
+et aussi la syntaxe du code vas un peu changer car il faudra retourner quelque chose a la fin de la fonction : EXEMPLE 
+
+#include <stdio.h>
+
+int bonjour(void)
+{
+    printf("Je suis la");
+    return 0; 
+}
+int main(void)
+{
+    int salutation=0;
+    salutation=bonjour();
+    printf("Blablabla %d \n", salutation) //Ici on aura un 0 a la fin de notre programme execute
+    return 0;
+}
+Cela signifie que c'est a cause de notre indication de retour au debut qui fait qu'on doit retourner quelque chose , 
+mais avec void on n'a pas besoin de faire un retour .
+*/
+
+
+
+
+/* Le mot cle static 
+****On a aussi Le mot cle static qui se mets avant meme la valeur de la variable comme par
+exemple static int prevision=0 ; 
+L'utilisation du mot-clé static en C (et dans d'autres langages de programmation comme C++ et Java) modifie le comportement et la durée de vie d'une variable. Voici une explication détaillée de son utilité et un exemple pour illustrer la différence entre une variable static et une variable normale (non statique).
+
+### Utilité de static
+
+1. *Durée de vie étendue*: Une variable static a une durée de vie étendue. Elle est créée lorsque le programme démarre et détruite lorsque le programme se termine, indépendamment de l'endroit où elle est déclarée. Si elle est déclarée dans une fonction, elle conserve sa valeur entre les appels de la fonction.
+  
+2. *Portée*: La portée d'une variable static dépend de son emplacement de déclaration.
+   - *À l'intérieur d'une fonction*: Elle n'est accessible qu'à l'intérieur de cette fonction, mais sa valeur est conservée entre les appels de la fonction.
+   - *À l'extérieur d'une fonction (au niveau du fichier)*: Elle est accessible dans tout le fichier, mais pas dans les autres fichiers (contrairement aux variables globales).
+
+### Exemple
+
+#### Sans static
+
+c
+#include <stdio.h>
+
+void fonction() {
+    int compteur = 0; // Variable normale
+    compteur++;
+    printf("Compteur sans static: %d\n", compteur);
+}
+
+int main() {
+    for (int i = 0; i < 3; i++) {
+        fonction();
+    }
+    return 0;
+}
+
+
+*Sortie attendue*:
+
+Compteur sans static: 1
+Compteur sans static: 1
+Compteur sans static: 1
+
+
+Explication: À chaque appel de fonction, la variable compteur est initialisée à 0 et incrémentée, donc elle affiche toujours 1.
+
+#### Avec static
+
+c
+#include <stdio.h>
+
+void fonction() {
+    static int compteur = 0; // Variable statique
+    compteur++;
+    printf("Compteur avec static: %d\n", compteur);
+}
+
+int main() {
+    for (int i = 0; i < 3; i++) {
+        fonction();
+    }
+    return 0;
+}
+
+
+*Sortie attendue*:
+
+Compteur avec static: 1
+Compteur avec static: 2
+Compteur avec static: 3
+
+
+Explication: La variable compteur est déclarée static, donc elle est initialisée une seule fois. À chaque appel de fonction, sa valeur est conservée et incrémentée, donc elle affiche 1, puis 2, puis 3.
+
+### Conclusion
+
+- Sans static, la variable est initialisée à chaque appel de la fonction, donc elle ne conserve pas sa valeur entre les appels.
+- Avec static, la variable est initialisée une seule fois et conserve sa valeur entre les appels de la fonction.
+
+Cela permet d'utiliser des variables qui "mémorisent" leur état d'une exécution à l'autre, ce qui peut être très utile dans de nombreux contextes de programmation.L'utilisation du mot-clé static en C (et dans d'autres langages de programmation comme C++ et Java) modifie le comportement et la durée de vie d'une variable. Voici une explication détaillée de son utilité et un exemple pour illustrer la différence entre une variable static et une variable normale (non statique).
+
+### Utilité de static
+
+1. *Durée de vie étendue*: Une variable static a une durée de vie étendue. Elle est créée lorsque le programme démarre et détruite lorsque le programme se termine, indépendamment de l'endroit où elle est déclarée. Si elle est déclarée dans une fonction, elle conserve sa valeur entre les appels de la fonction.
+  
+2. *Portée*: La portée d'une variable static dépend de son emplacement de déclaration.
+   - *À l'intérieur d'une fonction*: Elle n'est accessible qu'à l'intérieur de cette fonction, mais sa valeur est conservée entre les appels de la fonction.
+   - *À l'extérieur d'une fonction (au niveau du fichier)*: Elle est accessible dans tout le fichier, mais pas dans les autres fichiers (contrairement aux variables globales).
+
+### Exemple
+
+#### Sans static
+
+c
+#include <stdio.h>
+
+void fonction() {
+    int compteur = 0; // Variable normale
+    compteur++;
+    printf("Compteur sans static: %d\n", compteur);
+}
+
+int main() {
+    for (int i = 0; i < 3; i++) {
+        fonction();
+    }
+    return 0;
+}
+
+
+*Sortie attendue*:
+
+Compteur sans static: 1
+Compteur sans static: 1
+Compteur sans static: 1
+
+
+Explication: À chaque appel de fonction, la variable compteur est initialisée à 0 et incrémentée,
+ donc elle affiche toujours 1.
+
+#### Avec static
+
+c
+#include <stdio.h>
+
+void fonction() {
+    static int compteur = 0; // Variable statique
+    compteur++;
+    printf("Compteur avec static: %d\n", compteur);
+}
+
+int main() {
+    for (int i = 0; i < 3; i++) {
+        fonction();
+    }
+    return 0;
+}
+
+
+*Sortie attendue*:
+
+Compteur avec static: 1
+Compteur avec static: 2
+Compteur avec static: 3
+
+
+Explication: La variable compteur est déclarée static,
+ donc elle est initialisée une seule fois. À chaque appel de fonction,
+  sa valeur est conservée et incrémentée, donc elle affiche 1, puis 2, puis 3.
+
+### Conclusion
+
+- Sans static, la variable est initialisée à chaque appel de la fonction, donc elle ne conserve pas sa valeur entre les appels.
+- Avec static, la variable est initialisée une seule fois et conserve sa valeur entre les appels de la fonction.
+
+Cela permet d'utiliser des variables qui "mémorisent" leur état d'une exécution à l'autre, ce qui peut être très utile dans de nombreux contextes de programmation.
+Static devant une fonction signifie que cette fonction ne peut etre appele que dans le fichier qui le contient : Ex: static int bonjour(void)    ....
+
+Le mot-clé  `static`  utilisé devant une fonction en C a deux significations différentes en fonction du contexte :
+
+1. Lorsqu'un fonction est déclarée comme  `static`  à l'intérieur d'un fichier source, cela signifie que la fonction est visible uniquement 
+dans ce fichier source. 
+Cela limite la portée de la fonction à ce fichier et empêche d'autres fichiers de l'appeler.
+
+2. Lorsqu'une fonction est déclarée comme  `static`  à l'intérieur d'une fonction
+ (fonction imbriquée), cela signifie que la fonction imbriquée conserve sa valeur 
+ entre les appels successifs de la fonction externe. Cela permet à la fonction imbriquée
+  de garder une trace de ses modifications au fil du temps sans que la valeur soit réinitialisée
+   à chaque appel de la fonction externe.
+*/
+
+
+/*COURS SUR LES PREPOCESSEURS (COURS N10 DES VIDEOS)
+
+DIFFERENCE ENTRE VARIABLE GLOBALE ET DIRECTIVES
+
+Une variable globale est une variable déclarée en dehors de toutes les fonctions, ce qui signifie qu'elle est accessible et modifiable 
+par toutes les fonctions du programme. Une variable globale conserve sa valeur tout au long de l'exécution du programme, sauf si elle est 
+explicitement modifiée.
+
+Une directive, en revanche, est une instruction préprocesseur qui commence par le symbole  `#` . Les directives sont utilisées pour fournir 
+des instructions au compilateur avant la compilation du code source. Par exemple, la directive  `#include`  est utilisée pour inclure des 
+fichiers d'en-tête dans le programme, la directive  `#define`  est utilisée pour définir des constantes symboliques, et la directive 
+ `#ifdef`  est utilisée pour conditionner l'exécution du code en fonction de la définition d'une macro.
+
+En résumé, une variable globale est une entité de données accessible à l'ensemble du programme, tandis qu'une directive est une instruction
+ préprocesseur utilisée pour fournir des instructions au compilateur avant la compilation du code source. 
+ 
+ */
+
+#include <stdio.h>
+
+#define TVA 35
+
+int main (void)
+{
+  
+  int pht=90;
+  int pttc=pht+(pht*TVA/100);/* Ceci est la vraie formule du Prix du TTC ;) */
+  printf("%d \n", pttc);
+    return 0;
+}
+/* Petit point sur les directives ifndef , difine  et endif, il faut toujours les places en haut des fichier .h pour eviter les 
+boucles infinies des constantes . pour plus d'explication demande a chat gpt  . Dans le fichier.h le truc se presentera comme tel:  */ 
+
+#ifndef Holy
+#define Holy
+
+
+#endif // Lui il se place toujours a la fin du fichier .h
+
+/* AUTRES FONCTIONNALITES DU #define : EXEMPLE */
+
+#include <stdio.h>
+#define afficher printf  /* A chaque fois que le preprocesseur vera afficher il le remplacera directement par printf*/
+
+int main(void)
+{
+    afficher("Salut petit");
+    return 0;
+}
+// Ou encore 
+
+#include <stdio.h>
+#define Salut printf("Bien le bonjour cher commandant de bord") /* A chaque fois que le preprocesseur vera Salut il le remplacera directement
+ par printf("Bien le bonjour cher commandant de bord")*/
+
+int main(void)
+{
+    Salut;
+    return 0;
+}
+// cela pourrait t'aider pour changer par exemple les noms ou phrases complique par des mots simples .
+
+/*On peut aussi faire des calculs. Exemple: */
+#include <stdio.h>
+#define longueur 120
+#define largeur 90
+#define aire longueur*largeur
+int main(void)
+{
+    aire;
+    return 0;
+}
+
+/*CONSTANTES(directives) PREDEFINIES EN C :
+
+__FILE__(pour retrouver le nom du fichier )
+__LINE__(Pour trouver la ligne du fichier)
+__Date__(Date de compilation)
+__Time__(Heure de compilation)
+
+Exemple
+
+*/
+#include <stdio.h>
+int main(void)
+{
+    printf("NOM du fichier \n", __FILE__);
+    return 0;
+}
+
+
+
+/*CHAPITRE.....:''LES POINTEURS''*/
+
+//Petite parenthese pour montrer comment inverser deux valeurs 
+#include <stdio.h>
+#define A nombreA
+
+void inversion(int nombreA, int nombreB)
+{
+    printf("Avant A=%d B=%d \n", A, nombreB);
+    int depart = 0;
+    depart = A;
+    A = nombreB;
+    nombreB = depart;
+    printf("Après : A=%d  B=%d ; \n", A, nombreB);
+}
+
+int main(void)
+{
+    int A = 15;
+    int B = 30;
+    inversion(A, B);
+    return 0;
+}
+/* A retenir que les variables d'une fonction sont detruites a la fin de cette fonction . Donc une variable X definie dans une fonction bonjour
+ n'est pas la meme qu'une variable X definie dans une fonction main ou une autre .........*/ 
+
+OK maintenant passons au cours sur les Pointeurs 
+un pointeur est une variable qui contient l adresse d une autre variable 
+
+D abord pour afficher la valeur d une variable c es simple , c est le %d dans griffes et le nom de la variable apres les griffes 
+maintenant pour afficher l adresse d une variable , il nous faut faire un %p et apres les griffes il me faut ecrire un & devant
+ le nom de la variable
+ ex: printf("addresse =%p ", &mavariable)
+
+
+Quelques points a retenir 
+*nom c'est la syntaxe des pointeurs' exemple=*mavariable
+Maintenant au cours du programme lorsque on ecrit simplement le nom du pointeur , comme par exemple fonction(monPointeur) 
+cela fera reference a l'adresse de la variable pointee' , si on fait fonction(*monPointer) on fait reference a la valeur de la variable
+pointee . Maintenant si on fait &monPointeur cela se refere a l'adrese du pointeur'. Donc en gros la valeur 
+d'un pointeur est l'adresse de la variable pointee .
+Ca c'est pour les cas ou on travaille avec les pointeurs , et la creation c'est juste la creation quoi.
+Pour la creation de pointeur je vais prendre un exemple : int *Pointeur=&variable . c'est la regle generale de creation de pointeurs . ' si on veut pas pointer une variable
+avec on fait juste *monpointeur=0 
+
+exemple de programme : Inversion de nombres avec les pointeurs
+
+#include <stdio.h>
+
+void inversion (int *pointA, int *pointB) /*(ici l'utilisation des pointeurs comme parametre signifie que nous allons travailler avec les adresses 
+des variables que nous allons definir , les variables qui seront mi comme parametre lorsque nous ferons appel a notre fonction inversion ')*/
+{
+    int constante;
+    constante=*pointA; //indique au programme de modifier la valeur reel de point A car cette fonction travaille directement avec les adresses et non avec des copies comme les fonctions simples
+    *pointA=*pointB;//Meme chose 
+    *pointB=constante;//Meme chose merde 
+    printf("Apres inversion : %d et %d", *pointA,*pointB);//Bof ici le printf c'est juste pour ne pas le faire dans le main sinon on pourrait bel et bien l'ecrire apres l'appel de la fonction
+
+}
+
+int main(void)
+{
+    int nom1=56;
+    int nom2=67;
+    printf("Avant inversion : %d et %d \n" , nom1,nom2);
+    inversion(&nom1,&nom2);//ne jamais oublier '&' lors de l'appel avec une fontion pointee (C'est un nom inventee mais bon tu aura compris)
+    return 0;
+}
+
+Autre exemple :  incrementation avec pointeurs
+
+#include <stdio.h>
+
+void niveau(int *avant , int *apres)
+{
+    *apres+=1;
+    printf("Voila le niveau avant %d et le niveau apres %d \n ", *avant , *apres);
+}
+int main (void)
+{
+      int niveau0=1;
+      int niveau1=1;
+      niveau(&niveau0,&niveau1);
+      return 0;
+}
+
+un autre exemple :
+
+#include <stdio.h>
+void inversion(int *val1, int *val2)
+{
+    int constante;
+    constante=*val1;
+    *val1=*val2;
+    *val2=constante;
+}
+int main (void)
+{
+    int nom1=14;
+    int nom2=45;
+    printf("%d et %d \n ", nom1 , nom2);
+    int *point=&nom1;
+    int *point2=&nom2;
+    inversion(point, point2);/* ici on autilise point et point 2 car ils representent les adresse respectives de nom1 et nom2. 
+    ils ont juste pris la place de &nom1 et &nom2 qui eux sont aussi les adresses de nom1 et de nom2 c'est la meme chose . 
+     */ 
+    printf("%d et %d " ,nom1,nom2);
+    return 0;
+}
+Les pointeurs ont plusieurs avantages dont l'evitement des copies ' . c'est a dire que avant quand on travaillait avec 
+les fonctions simples , on travaillait avec des copies de variable (science bien et tu vas comprendre)' qui avaient aussi
+de la place dans la memoire . Mais avec les pointeurs , on evite la copie car on travaille directement avec les adresses de nos 
+variables et non des copies,  ce qui est plus leger pour la memoire .
+
+LES POINTEURS DE TYPE VOID ET LES CONVERSIONS DE POINTEURS 
+
+Un pointeur de type  `void`  est un type spécial de pointeur en langage C qui peut pointer vers 
+n'importe quel type de données, mais ne peut pas être dereferencé directement. En d'autres termes,
+ un pointeur de type  `void`  peut contenir l'adresse de n'importe quel type de données, mais pour 
+ accéder à la valeur pointée, il doit être converti en un autre type de pointeur approprié.
+
+Les pointeurs de type  `void`  sont souvent utilisés dans des situations où le type de données pointé 
+peut varier ou n'est pas connu à l'avance. Par exemple, les fonctions de bibliothèque standard en C, comme
+  `malloc` , retournent un pointeur de type  `void`  qui peut ensuite être converti en un pointeur du type souhaité.
+
+Voici un exemple simple d'utilisation d'un pointeur de type  `void`  :
+#include <stdio.h>
+
+int main() {
+    int num = 10;
+    void *ptr = &num;  // Pointeur de type void qui pointe vers num
+
+    // Pour accéder à la valeur pointée, le pointeur void doit être converti en un pointeur du type approprié
+    int *intPtr = (int *)ptr;
+    printf("Valeur pointée par le pointeur : %d\n", *intPtr);
+
+    return 0;
+}
+Dans cet exemple, un pointeur de type  `void`  est utilisé pour stocker l'adresse d'une variable de type  `int` , 
+puis est converti en un pointeur de type  `int`  pour accéder à la valeur pointée.
+
+En effet, pour accéder à la valeur pointée d'une variable à travers un pointeur, le type du pointeur doit correspondre 
+au type de la variable pointée. Cela signifie que le pointeur doit être déclaré avec le même type que la variable à laquelle
+ il pointe afin de pouvoir dereferencer le pointeur et accéder à la valeur stockée à cette adresse mémoire.
+
+Cependant, il est possible de stocker l'adresse d'une variable de n'importe quel type dans un pointeur de type  `void` ,
+ mais pour accéder à la valeur pointée, ce pointeur  `void`  doit être converti en un pointeur du type approprié.
+
+En résumé, pour accéder à la valeur d'une variable pointée via un pointeur, le type du pointeur doit correspondre au type de
+ la variable, sauf dans le cas des pointeurs de type  `void`  qui nécessitent une conversion explicite pour accéder à la valeur.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+return 0;
+}
+
+
